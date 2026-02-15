@@ -17,9 +17,34 @@ public class Notebook {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "notebook", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Page> pages;
+
+    public Notebook() {
+    }
+
+    public Notebook(User user) {
+        this.user = user;
+        this.pages = List.of();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public List<Page> getPages() {
+        return pages;
+    }
+
+    public void addPages(Page page) {
+        this.pages.add(page);
+    }
+
 }
