@@ -23,12 +23,15 @@ public class Notebook {
     @OneToMany(mappedBy = "notebook", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Page> pages;
 
+    private boolean isPublic;
+
     public Notebook() {
     }
 
     public Notebook(User user) {
         this.user = user;
         this.pages = List.of();
+        this.isPublic = false;
     }
 
     public Long getId() {
@@ -45,6 +48,10 @@ public class Notebook {
 
     public void addPages(Page page) {
         this.pages.add(page);
+    }
+
+    public boolean isPublic() {
+        return isPublic;
     }
 
 }
